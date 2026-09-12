@@ -54,37 +54,52 @@ function App() {
           (technology) => technology.category === selectedCategory
         );
 
+  // Add to Stack with Toast
   const handleAddToStack = (technology: Technology) => {
     const alreadyAdded = stack.some((item) => item.id === technology.id);
 
     if (alreadyAdded) {
-      toast.warning(`${technology.name} is already in your stack!`);
+      toast.warning(`${technology.name} is already in your stack!`, {
+        position: "top-right",
+        autoClose: 2000,
+      });
       return;
     }
 
     setStack([...stack, technology]);
-    toast.success(`${technology.name} added to your stack!`);
+    toast.success(`${technology.name} added to your stack!`, {
+      position: "top-right",
+      autoClose: 2000,
+    });
   };
 
+  // Remove single item with Toast
   const handleRemoveFromStack = (id: string) => {
-    const itemToRemove = stack.find((item) => item.id === id);
+    const techToRemove = stack.find((item) => item.id === id);
     setStack(stack.filter((item) => item.id !== id));
     
-    if (itemToRemove) {
-      toast.info(`${itemToRemove.name} removed from stack.`);
+    if (techToRemove) {
+      toast.info(`${techToRemove.name} removed from your stack!`, {
+        position: "top-right",
+        autoClose: 2000,
+      });
     }
   };
 
+  // Remove All with Toast
   const handleRemoveAll = () => {
     if (stack.length === 0) return;
     setStack([]);
-    toast.error("All items removed from your stack!");
+    toast.error("All technologies removed from your stack!", {
+      position: "top-right",
+      autoClose: 2000,
+    });
   };
 
   return (
     <div className="min-h-screen bg-[#0b0714] text-white">
-      {/* Toast Notification Container */}
-      <ToastContainer position="bottom-right" theme="dark" autoClose={3000} />
+      {/* ToastContainer for rendering popups */}
+      <ToastContainer theme="dark" />
 
       <Navbar />
 
@@ -103,6 +118,7 @@ function App() {
             </p>
           </div>
 
+          {/* Category Filter Buttons */}
           <div className="mt-8 flex flex-wrap justify-center gap-2">
             {categories.map((category) => (
               <button
@@ -119,11 +135,12 @@ function App() {
             ))}
           </div>
 
+          {/* Grid Layout: Tech Cards + Sidebar */}
           <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_320px]">
             <div>
               {loading ? (
                 <div className="flex justify-center py-20">
-                  <span className="loading loading-spinner loading-lg"></span>
+                  <span className="loading loading-spinner loading-lg text-pink-500"></span>
                 </div>
               ) : (
                 <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -139,6 +156,7 @@ function App() {
               )}
             </div>
 
+            {/* Your Stack Sidebar */}
             <StackSidebar
               stack={stack}
               onRemove={handleRemoveFromStack}
