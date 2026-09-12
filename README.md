@@ -3,7 +3,7 @@
 Dev Stack is a modern, interactive web application built with React, TypeScript, Tailwind CSS, and DaisyUI. It allows users to explore various software technologies, filter them by categories, view detailed metrics, and interactively build their customized development stack with real-time feedback using Toast notifications.
 
 ## 🚀 Live Demo & Repository
-- **Live Demo:** https://tahsin-jawad.github.io/A05-DevStack
+- **Live Demo:** https://a05-dev-stack-hgja.vercel.app
 - **GitHub Repository:** https://github.com/Tahsin-Jawad/A05-DevStack
 
 ---
