@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import TechnologyCard from "./components/TechnologyCard";
 import StackSidebar from "./components/StackSidebar";
+import Footer from "./components/Footer";
 
 export type Technology = {
   id: string;
@@ -54,7 +55,6 @@ function App() {
           (technology) => technology.category === selectedCategory
         );
 
-  // Add to Stack with Toast
   const handleAddToStack = (technology: Technology) => {
     const alreadyAdded = stack.some((item) => item.id === technology.id);
 
@@ -73,7 +73,6 @@ function App() {
     });
   };
 
-  // Remove single item with Toast
   const handleRemoveFromStack = (id: string) => {
     const techToRemove = stack.find((item) => item.id === id);
     setStack(stack.filter((item) => item.id !== id));
@@ -86,7 +85,6 @@ function App() {
     }
   };
 
-  // Remove All with Toast
   const handleRemoveAll = () => {
     if (stack.length === 0) return;
     setStack([]);
@@ -98,7 +96,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#0b0714] text-white">
-      {/* ToastContainer for rendering popups */}
       <ToastContainer theme="dark" />
 
       <Navbar />
@@ -118,7 +115,6 @@ function App() {
             </p>
           </div>
 
-          {/* Category Filter Buttons */}
           <div className="mt-8 flex flex-wrap justify-center gap-2">
             {categories.map((category) => (
               <button
@@ -135,7 +131,6 @@ function App() {
             ))}
           </div>
 
-          {/* Grid Layout: Tech Cards + Sidebar */}
           <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_320px]">
             <div>
               {loading ? (
@@ -156,7 +151,6 @@ function App() {
               )}
             </div>
 
-            {/* Your Stack Sidebar */}
             <StackSidebar
               stack={stack}
               onRemove={handleRemoveFromStack}
@@ -165,6 +159,9 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* Footer added here */}
+      <Footer />
     </div>
   );
 }
