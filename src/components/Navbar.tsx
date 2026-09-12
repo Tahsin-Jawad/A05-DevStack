@@ -1,4 +1,5 @@
 import { useState } from "react";
+import logoText from "../assets/logo-text.png";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,18 +25,9 @@ function Navbar() {
           ☰
         </button>
 
-        {/* Brand */}
-        <a
-          href="#home"
-          className="flex items-center gap-2"
-        >
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl brand-gradient text-lg font-bold text-white">
-            &lt;/&gt;
-          </div>
-
-          <span className="brand-gradient-text text-xl font-bold">
-            Dev Stack
-          </span>
+        {/* Brand Logo Image */}
+        <a href="#home" className="flex items-center gap-2">
+          <img src={logoText} alt="Dev Stack Logo" className="h-9 object-contain" />
         </a>
 
         {/* Desktop Navigation */}

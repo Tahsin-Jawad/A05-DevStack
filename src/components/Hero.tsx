@@ -1,4 +1,4 @@
-import heroImage from "../assets/hero.png";
+import bannerStack from "../assets/banner-stack.png";
 
 function Hero() {
   const scrollToTechnologies = () => {
@@ -52,10 +52,10 @@ function Hero() {
           </div>
         </div>
 
-        {/* Hero Image */}
+        {/* Hero 3D Image */}
         <div className="flex justify-center">
           <img
-            src={heroImage}
+            src={bannerStack}
             alt="Development technology stack"
             className="w-full max-w-lg object-contain drop-shadow-2xl"
           />

@@ -20,6 +20,10 @@ function TechnologyCard({
             src={technology.icon}
             alt={technology.name}
             className="h-full w-full object-contain"
+            onError={(e) => {
+              // Fallback CDN if URL breaks
+              (e.target as HTMLImageElement).src = `https://cdn.simpleicons.org/${technology.name.toLowerCase().replace(/\.js$/, "dotjs").replace(/\s+/g, "")}`;
+            }}
           />
         </div>
 
