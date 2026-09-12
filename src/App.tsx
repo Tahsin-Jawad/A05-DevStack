@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import TechnologyCard from "./components/TechnologyCard";
+import StackSidebar from "./components/StackSidebar";
 
 export type Technology = {
   id: string;
@@ -62,6 +63,14 @@ function App() {
     setStack([...stack, technology]);
   };
 
+  const handleRemoveFromStack = (id: string) => {
+    setStack(stack.filter((item) => item.id !== id));
+  };
+
+  const handleRemoveAll = () => {
+    setStack([]);
+  };
+
   return (
     <div className="min-h-screen bg-[#0b0714] text-white">
       <Navbar />
@@ -73,7 +82,6 @@ function App() {
         className="px-4 py-20 sm:px-6 lg:px-8"
       >
         <div className="mx-auto max-w-7xl">
-
           {/* Section Heading */}
           <div className="text-center">
             <h2 className="text-3xl font-bold sm:text-4xl">
@@ -81,8 +89,8 @@ function App() {
             </h2>
 
             <p className="mx-auto mt-3 max-w-2xl text-gray-400">
-              Discover the tools and technologies you need to
-              build modern, scalable applications.
+              Discover the tools and technologies you need to build
+              modern, scalable applications.
             </p>
           </div>
 
@@ -103,25 +111,37 @@ function App() {
             ))}
           </div>
 
-          {/* Loading */}
-          {loading ? (
-            <div className="flex justify-center py-20">
-              <span className="loading loading-spinner loading-lg"></span>
+          {/* Technologies + Your Stack */}
+          <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_320px]">
+            {/* Technology Cards */}
+            <div>
+              {loading ? (
+                <div className="flex justify-center py-20">
+                  <span className="loading loading-spinner loading-lg"></span>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                  {filteredTechnologies.map((technology) => (
+                    <TechnologyCard
+                      key={technology.id}
+                      technology={technology}
+                      isAdded={stack.some(
+                        (item) => item.id === technology.id
+                      )}
+                      onAdd={handleAddToStack}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
-          ) : (
-            <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {filteredTechnologies.map((technology) => (
-                <TechnologyCard
-                  key={technology.id}
-                  technology={technology}
-                  isAdded={stack.some(
-                    (item) => item.id === technology.id
-                  )}
-                  onAdd={handleAddToStack}
-                />
-              ))}
-            </div>
-          )}
+
+            {/* Your Stack Sidebar */}
+            <StackSidebar
+              stack={stack}
+              onRemove={handleRemoveFromStack}
+              onRemoveAll={handleRemoveAll}
+            />
+          </div>
         </div>
       </section>
     </div>
