@@ -3,93 +3,84 @@ import { useState } from "react";
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  return (
-    <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 backdrop-blur">
-      <nav className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 lg:px-8">
+  const navLinks = [
+    { name: "Home", href: "#home" },
+    { name: "Technologies", href: "#technologies" },
+    { name: "Projects", href: "#projects" },
+    { name: "About", href: "#about" },
+    { name: "Contact", href: "#contact" },
+  ];
 
-        {/* Logo */}
-        <a href="#" className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-r from-orange-400 via-pink-500 to-violet-600 text-sm font-bold text-white">
+  return (
+    <nav className="sticky top-0 z-50 border-b border-white/10 bg-[#0b0714]/95 backdrop-blur-md">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+
+        {/* Mobile Menu Button */}
+        <button
+          className="btn btn-ghost btn-sm text-2xl text-white md:hidden"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          ☰
+        </button>
+
+        {/* Brand */}
+        <a
+          href="#home"
+          className="flex items-center gap-2"
+        >
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl brand-gradient text-lg font-bold text-white">
             &lt;/&gt;
           </div>
 
-          <span className="bg-gradient-to-r from-orange-400 via-pink-500 to-violet-600 bg-clip-text text-xl font-bold text-transparent">
+          <span className="brand-gradient-text text-xl font-bold">
             Dev Stack
           </span>
         </a>
 
-        {/* Desktop Menu */}
-        <div className="hidden items-center gap-8 md:flex">
-          <a href="#" className="text-sm font-medium text-gray-800 hover:text-pink-500">
-            Home
-          </a>
-          <a href="#technologies" className="text-sm text-gray-500 hover:text-pink-500">
-            Technologies
-          </a>
-          <a href="#projects" className="text-sm text-gray-500 hover:text-pink-500">
-            Projects
-          </a>
-          <a href="#about" className="text-sm text-gray-500 hover:text-pink-500">
-            About
-          </a>
-          <a href="#contact" className="text-sm text-gray-500 hover:text-pink-500">
-            Contact
-          </a>
+        {/* Desktop Navigation */}
+        <div className="hidden items-center gap-7 md:flex">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="text-sm text-gray-300 transition hover:text-white"
+            >
+              {link.name}
+            </a>
+          ))}
         </div>
 
-        {/* Desktop Buttons */}
-        <div className="hidden items-center gap-3 md:flex">
-          <button className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900">
+        {/* Auth Buttons */}
+        <div className="flex items-center gap-2">
+          <button className="btn btn-ghost btn-sm text-gray-300">
             Sign In
           </button>
 
-          <button className="rounded-full bg-gradient-to-r from-orange-400 via-pink-500 to-violet-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-90">
+          <button className="btn btn-sm rounded-full border-0 brand-gradient text-white">
             Sign Up
           </button>
         </div>
-
-        {/* Mobile */}
-        <div className="flex items-center gap-2 md:hidden">
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="mr-1 text-2xl text-gray-700"
-          >
-            ☰
-          </button>
-
-          <button className="px-2 py-1 text-xs font-medium text-gray-600">
-            Sign In
-          </button>
-
-          <button className="rounded-full bg-gradient-to-r from-orange-400 via-pink-500 to-violet-600 px-3 py-1.5 text-xs font-semibold text-white">
-            Sign Up
-          </button>
-        </div>
-      </nav>
+      </div>
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="border-t border-gray-100 bg-white px-6 py-4 md:hidden">
-          <div className="flex flex-col gap-4">
-            <a href="#" onClick={() => setMenuOpen(false)}>
-              Home
-            </a>
-            <a href="#technologies" onClick={() => setMenuOpen(false)}>
-              Technologies
-            </a>
-            <a href="#projects" onClick={() => setMenuOpen(false)}>
-              Projects
-            </a>
-            <a href="#about" onClick={() => setMenuOpen(false)}>
-              About
-            </a>
-            <a href="#contact" onClick={() => setMenuOpen(false)}>
-              Contact
-            </a>
+        <div className="border-t border-white/10 px-4 py-4 md:hidden">
+          <div className="flex flex-col gap-2">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="rounded-lg px-4 py-3 text-sm text-gray-300 hover:bg-white/5 hover:text-white"
+              >
+                {link.name}
+              </a>
+            ))}
           </div>
         </div>
       )}
-    </header>
+    </nav>
   );
 }
 
