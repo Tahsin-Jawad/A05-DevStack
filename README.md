@@ -1,75 +1,44 @@
-# React + TypeScript + Vite
+# Dev Stack - Technology Stack Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dev Stack is a modern, interactive web application built with React, TypeScript, Tailwind CSS, and DaisyUI. It allows users to explore various software technologies, filter them by categories, view detailed metrics, and interactively build their customized development stack with real-time feedback using Toast notifications.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo & Repository
+- **Live Demo:** https://tahsin-jawad.github.io/A05-DevStack
+- **GitHub Repository:** https://github.com/Tahsin-Jawad/A05-DevStack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🛠️ Technologies Used
+- **Frontend Framework:** React (with Vite)
+- **Language:** TypeScript
+- **Styling Framework:** Tailwind CSS & DaisyUI
+- **Notifications:** React-Toastify
+- **Icons:** SVG & CDN Fallbacks
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
+1. **Explore Technologies:** Browse through a curated list of popular frontend, backend, database, styling, and DevOps tools.
+2. **Category Filtering:** Filter technology cards dynamically based on categories (e.g., Frontend, Backend, Database).
+3. **Interactive Stack Builder:** Add technologies to your personal stack sidebar with immediate feedback.
+4. **Duplicate Prevention:** Toast warning notifications prevent adding duplicate items to your stack.
+5. **Interactive Controls:** Remove individual technologies from the sidebar or clear the entire stack with one click.
+6. **Toast Notifications:** Real-time feedback for adding, repeating, or removing items using `react-toastify`.
+7. **Responsive Design:** Fully responsive dark-themed UI matching modern developer aesthetics.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## ❓ Viva Questions & Answers
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 1. What is the difference between `map()`, `filter()`, and `forEach()` in JavaScript/React?
+- **`map()`:** Transforms each element of an array by executing a callback function and returns a **new array** of the same length. Ideal for rendering lists in React JSX.
+- **`filter()`:** Evaluates each element against a conditional test and returns a **new array** containing only the elements that satisfy the condition.
+- **`forEach()`:** Iterates over each item to perform side effects (like logging or updating external variables). It **does not return** any value (`undefined`).
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2. What are React Props and State? How do they differ?
+- **Props (Properties):** Read-only data passed from a parent component down to a child component. They are immutable within the receiver component.
+- **State:** Internal dynamic data managed within a component using hooks like `useState`. When state updates, React re-renders the component to reflect changes in the UI.
 
-```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+### 3. How does `useState()` work in React, and why can't we mutate state directly?
+- `useState()` is a React Hook that declares a state variable and a updater function (e.g., `const [stack, setStack] = useState([])`).
+- Direct mutation (e.g., `stack.push(item)`) does not trigger a re-render because React checks object/array memory references to detect changes. Calling the updater function (e.g., `setStack([...stack, item])`) creates a new reference, notifying React to re-render the updated UI properly.
